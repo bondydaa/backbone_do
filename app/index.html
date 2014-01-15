@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>Let's Brunch</title>
+  <link href="http://getbootstrap.com/dist/css/bootstrap.css" rel="stylesheet" type="text/css" />
   <link href="/app/css/main.css" rel="stylesheet" type="text/css" />
   <!--[if IE]>
 
@@ -9,8 +10,22 @@
 </head>
 <body>
 
+  <ul>
+    <li><span class="count">0</span><button type="button" class="btn btn-default btn-xs add">+</button>A Thing<button type="button" class="btn btn-default btn-xs">-</button></li>
+    <li><span class="count">0</span><button type="button" class="btn btn-default btn-xs add">+</button>Another Thing<button type="button" class="btn btn-default btn-xs">-</button></li>
+    <li><span class="count">0</span><button type="button" class="btn btn-default btn-xs add">+</button>One More Thing<button type="button" class="btn btn-default btn-xs">-</button></li>
+    <li><span class="count">0</span><button type="button" class="btn btn-default btn-xs add">+</button>And Another Thing<button type="button" class="btn btn-default btn-xs">-</button></li>
+  </ul>
 
   <script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-  <script type="text/javascript" src"http://backbonejs.org/backbone-min.js"></script>
+  <script type="text/javascript" src="http://underscorejs.org/underscore-min.js"></script>
+  <script type="text/javascript" src="http://backbonejs.org/backbone-min.js"></script>
+  <script type="text/javascript" src="/app/js/main.js"></script>
+
+
+  <script type="text/template" >
+  <li><span class="count">0</span><button type="button" class="btn btn-default btn-xs">+</button>A Thing<button type="button" class="btn btn-default btn-xs">-</button></li>
+  </script>
+
 </body>
 </html>

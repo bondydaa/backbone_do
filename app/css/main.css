@@ -1,0 +1,14 @@
+/* line 3, ../src/main.scss */
+body {
+  padding: 20px;
+}
+
+/* line 7, ../src/main.scss */
+li {
+  list-style: none;
+}
+
+/* line 11, ../src/main.scss */
+button {
+  margin: 0 5px;
+}
