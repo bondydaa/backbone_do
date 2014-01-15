@@ -18,10 +18,8 @@ var CountView = Backbone.View.extend({
     "click": "vote"
   },
   vote: function(){
-    console.log(this);
-    if($(this).hasClass('add')){
-      alert('clicked');
-    }
+    console.log(this.$el);
+
   }
 });
 
