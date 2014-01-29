@@ -1,3 +1,22 @@
+var CandidateModel = Backbone.Model.extend({
+  defaults: {
+    name: '',
+    votes: 0
+  }
+});
+
+var Ballot = Backbone.Collection.extend({
+  model: CandidateModel,
+
+  addCandiate: function(){
+
+  }
+});
+
+
+
+
+
 var leVote = {
   ballot: [
     {
