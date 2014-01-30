@@ -1,5 +1,4 @@
 *.sass-cache*
-config.rb
 .DS_Store
 .DS_Store?
 ._*

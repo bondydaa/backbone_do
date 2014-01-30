@@ -13,27 +13,27 @@
   <ul>
     <li id="opt1">
       <span id="vote-counter1" class="vote-counter">0</span>
-      <button class="glyphicon glyphicon-arrow-up iter1 vote-plus"></button>
+      <button id="upvote1" class="glyphicon glyphicon-arrow-up vote-plus"></button>
       One
-      <button class="glyphicon glyphicon-arrow-down iter1 vote-minus"></button>
+      <button id="downvote1" class="glyphicon glyphicon-arrow-down vote-minus"></button>
     </li>
     <li id="opt2">
       <span id="vote-counter2" class="vote-counter">0</span>
-      <button class="glyphicon glyphicon-arrow-up iter2 vote-plus"></button>
+      <button id="upvote2" class="glyphicon glyphicon-arrow-up vote-plus"></button>
       Two
-      <button class="glyphicon glyphicon-arrow-down iter2 vote-minus"></button>
+      <button id="downvote2" class="glyphicon glyphicon-arrow-down vote-minus"></button>
     </li>
     <li id="opt3">
       <span id="vote-counter3" class="vote-counter">0</span>
-      <button class="glyphicon glyphicon-arrow-up iter3 vote-plus"></button>
+      <button id="upvote3" class="glyphicon glyphicon-arrow-up vote-plus"></button>
       Three
-      <button class="glyphicon glyphicon-arrow-down iter3 vote-minus"></button>
+      <button id="downvote3" class="glyphicon glyphicon-arrow-down vote-minus"></button>
     </li>
     <li id="opt4">
       <span id="vote-counter4" class="vote-counter">0</span>
-      <button class="glyphicon glyphicon-arrow-up iter4 vote-plus"></button>
+      <button id="upvote4" class="glyphicon glyphicon-arrow-up vote-plus"></button>
       Four
-      <button class="glyphicon glyphicon-arrow-down iter4 vote-minus"></button>
+      <button id="downvote4" class="glyphicon glyphicon-arrow-down vote-minus"></button>
     </li>
   </ul>
 
@@ -43,8 +43,8 @@
   <script type="text/javascript" src="/app/js/main.js"></script>
 
 
-  <script type="text/template" >
-  <li><span class="count">0</span><button type="button" class="btn btn-default btn-xs">+</button>A Thing<button type="button" class="btn btn-default btn-xs">-</button></li>
+  <script type="text/template" id="vote-counter-tmplt">
+  <span class="vote-counter"><%= votes %></span>
   </script>
 
 </body>
