@@ -1,3 +1,5 @@
+$(document).ready(function(){
+
 var CandidateModel = Backbone.Model.extend({
   defaults: {
     votes: 0
@@ -26,11 +28,11 @@ var ButtonView = Backbone.View.extend({
         incdVote;
     if(this.$el.hasClass('vote-plus')){
       // this.model.attributes.votes++;
-      incdVote += numVotes;
+      incdVote = ++numVotes;
       this.model.set({votes: incdVote});
     } else {
       // this.model.attributes.votes--;
-      incdVote -= numVotes;
+      incdVote = --numVotes;
       this.model.set({votes: incdVote});
     }
   }
@@ -38,11 +40,10 @@ var ButtonView = Backbone.View.extend({
 });
 
 var CountView = Backbone.View.extend({
-  // template: _.template( $('#vote-counter-tmplt').html() ),
+  template: _.template( $('#vote-counter-tmplt').html() ),
 
   initialize: function() {
     // this.listenTo(this.model, "change", this.alert);
-    console.log($('#vote-counter-tmplt'));
 
     this.render();
 
@@ -52,7 +53,7 @@ var CountView = Backbone.View.extend({
   },
 
   render: function(){
-    var rendered = this.template(this.model.toJson());
+    var rendered = this.template(this.model.toJSON());
     this.$el.html(rendered);
   }
 
@@ -83,6 +84,8 @@ var voteCounter1 = new CountView({el: $('#vote-counter1'), collection: ballot, m
 var voteCounter2 = new CountView({el: $('#vote-counter2'), collection: ballot, model: candidate2});
 var voteCounter3 = new CountView({el: $('#vote-counter3'), collection: ballot, model: candidate3});
 var voteCounter4 = new CountView({el: $('#vote-counter4'), collection: ballot, model: candidate4});
+
+});
 
 /*
 var leVote = {
