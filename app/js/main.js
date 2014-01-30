@@ -22,21 +22,40 @@ var ButtonView = Backbone.View.extend({
   },
 
   increment: function(e){
+    var numVotes = this.model.attributes.votes,
+        incdVote;
     if(this.$el.hasClass('vote-plus')){
-      this.model.attributes.votes++;
+      // this.model.attributes.votes++;
+      incdVote += numVotes;
+      this.model.set({votes: incdVote});
     } else {
-      this.model.attributes.votes--;
+      // this.model.attributes.votes--;
+      incdVote -= numVotes;
+      this.model.set({votes: incdVote});
     }
   }
+
 });
 
 var CountView = Backbone.View.extend({
-  initialize: function(){
-    this.listenTo(this.model, 'change', this.render());
+  // template: _.template( $('#vote-counter-tmplt').html() ),
+
+  initialize: function() {
+    // this.listenTo(this.model, "change", this.alert);
+    console.log($('#vote-counter-tmplt'));
+
+    this.render();
+
+    this.model.on('change', function(){
+      this.render();
+    }, this);
   },
+
   render: function(){
-    console.log(this.model)
+    var rendered = this.template(this.model.toJson());
+    this.$el.html(rendered);
   }
+
 });
 
 
