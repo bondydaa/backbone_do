@@ -1,4 +1,8 @@
 @import "compass/css3";
+@import "variables";
+@import "mixins";
+@import "reset";
+@import "layout";
 
 body {
   padding: 20px;

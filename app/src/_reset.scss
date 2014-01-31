@@ -2,7 +2,7 @@
    v2.0 | 20110126
    License: none (public domain)
 */
-/* line 18, ../src/_reset.scss */
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -23,53 +23,26 @@ time, mark, audio, video {
   font: inherit;
   vertical-align: baseline;
 }
-
 /* HTML5 display-role reset for older browsers */
-/* line 28, ../src/_reset.scss */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
   display: block;
 }
-
-/* line 31, ../src/_reset.scss */
 body {
   line-height: 1;
 }
-
-/* line 34, ../src/_reset.scss */
 ol, ul {
   list-style: none;
 }
-
-/* line 37, ../src/_reset.scss */
 blockquote, q {
   quotes: none;
 }
-
-/* line 41, ../src/_reset.scss */
 blockquote:before, blockquote:after,
 q:before, q:after {
   content: '';
   content: none;
 }
-
-/* line 45, ../src/_reset.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
-}
-
-/* line 4, ../src/main.scss */
-body {
-  padding: 20px;
-}
-
-/* line 8, ../src/main.scss */
-li {
-  list-style: none;
-}
-
-/* line 12, ../src/main.scss */
-button {
-  margin: 5px;
 }
