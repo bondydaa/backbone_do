@@ -8,37 +8,25 @@
   <![endif]-->
 </head>
 <body>
-  <header>
-    <nav>
-    </nav>
-  </header>
 
-  <ul>
-    <li id="opt1">
-      <span id="vote-counter1" class="vote-counter">0</span>
-      <button id="upvote1" class="glyphicon glyphicon-arrow-up vote-plus"></button>
-      One
-      <button id="downvote1" class="glyphicon glyphicon-arrow-down vote-minus"></button>
-    </li>
-    <li id="opt2">
-      <span id="vote-counter2" class="vote-counter">0</span>
-      <button id="upvote2" class="glyphicon glyphicon-arrow-up vote-plus"></button>
-      Two
-      <button id="downvote2" class="glyphicon glyphicon-arrow-down vote-minus"></button>
-    </li>
-    <li id="opt3">
-      <span id="vote-counter3" class="vote-counter">0</span>
-      <button id="upvote3" class="glyphicon glyphicon-arrow-up vote-plus"></button>
-      Three
-      <button id="downvote3" class="glyphicon glyphicon-arrow-down vote-minus"></button>
-    </li>
-    <li id="opt4">
-      <span id="vote-counter4" class="vote-counter">0</span>
-      <button id="upvote4" class="glyphicon glyphicon-arrow-up vote-plus"></button>
-      Four
-      <button id="downvote4" class="glyphicon glyphicon-arrow-down vote-minus"></button>
-    </li>
-  </ul>
+  <section class="main">
+    <header>
+      <h1>Let's Do</h1>
+      <p>The quickest, simplest way to force your friends to make a decision.</p>
+    </header>
+
+    <div>
+      <form>
+        <label for="event">Let's Do:</label>
+        <input type="text" id="event">
+        <label>When?</label>
+        <input type="date">
+        <label>How Many People</label>
+        <input type="number">
+        <input type="submit" value="Let's Do!">
+      </form>
+    </div>
+  </section>
 
   <script type="text/javascript" src="/app/js/vendor/jquery-1.11.0.min.js"></script>
   <script type="text/javascript" src="/app/js/vendor/underscore-min.js"></script>
