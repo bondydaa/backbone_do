@@ -8,14 +8,12 @@ var CandidateModel = Backbone.Model.extend({
 
 var BallotCollection = Backbone.Collection.extend({
   model: CandidateModel,
+  comparator: 'votes',
 
-  addCandiate: function(){
+  addCandiate: function(model){
 
-  },
-
-  sortCandidates: function(){
-    this.sortBy(votes);
   }
+
 });
 
 var ButtonView = Backbone.View.extend({
@@ -35,9 +33,41 @@ var ButtonView = Backbone.View.extend({
       incdVote = --numVotes;
       this.model.set({votes: incdVote});
     }
+    this.collection.sort();
+    console.log(this.collection);
   }
 
 });
+
+var CandidateView = Backbone.View.extend({
+  template: _.template($('#candidate-template').html()),
+
+  initialize: function(){
+    this.render();
+
+    // var modelName = this.model.attributes.name;
+    // new ButtonView({el: $('#'+modelName+'-upvote'), collection: ballot, model: modelName});
+    // new ButtonView({el: $('#'+modelName+'-downvote'), collection: ballot, model: modelName});
+    // console.log('#'+modelName+'-upvote');
+
+  },
+
+  render: function(){
+    var rendered = this.template(this.model.toJSON());
+    this.$el.html(rendered);
+    // this.initBtns();
+  },
+
+  initBtns: function(){
+    // var modelName = this.model.attributes.name;
+    // console.log('#'+modelName+'-upvote');
+    // new ButtonView({el: $('#'+modelName+'-upvote'), collection: ballot, model: modelName});
+    // new ButtonView({el: $('#'+modelName+'-downvote'), collection: ballot, model: modelName});
+  }
+
+});
+
+
 
 var CountView = Backbone.View.extend({
   template: _.template( $('#vote-counter-tmplt').html() ),
@@ -66,23 +96,30 @@ var candidate2 = new CandidateModel({name: 'candidate2'});
 var candidate3 = new CandidateModel({name: 'candidate3'});
 var candidate4 = new CandidateModel({name: 'candidate4'});
 
-var ballot = new BallotCollection([candidate1, candidate2, candidate3, candidate4]);
+var ballot = new BallotCollection();
 
-var button1 = new ButtonView({el: $('#upvote1'), collection: ballot, model: candidate1});
-var button2 = new ButtonView({el: $('#downvote1'), collection: ballot, model: candidate1});
+ballot.on('add', function(model){
+  var view = new CandidateView({el: $('<li></li>'), model: model});
+  $('#ballot').append(view.$el);
+});
 
-var button3 = new ButtonView({el: $('#upvote2'), collection: ballot, model: candidate2});
-var button4 = new ButtonView({el: $('#downvote2'), collection: ballot, model: candidate2});
+ballot.add(candidate1);
+ballot.add(candidate2);
+ballot.add(candidate3);
+ballot.add(candidate4);
 
-var button5 = new ButtonView({el: $('#upvote3'), collection: ballot, model: candidate3});
-var button6 = new ButtonView({el: $('#downvote3'), collection: ballot, model: candidate3});
+new ButtonView({el: $('#candidate1-upvote'), collection: ballot, model: candidate1});
+new ButtonView({el: $('#candidate1-downvote'), collection: ballot, model: candidate1});
+new ButtonView({el: $('#candidate2-upvote'), collection: ballot, model: candidate2});
+new ButtonView({el: $('#candidate2-downvote'), collection: ballot, model: candidate2});
+new ButtonView({el: $('#candidate3-upvote'), collection: ballot, model: candidate3});
+new ButtonView({el: $('#candidate3-downvote'), collection: ballot, model: candidate3});
+new ButtonView({el: $('#candidate4-upvote'), collection: ballot, model: candidate4});
+new ButtonView({el: $('#candidate4-downvote'), collection: ballot, model: candidate4});
 
-var button7 = new ButtonView({el: $('#upvote4'), collection: ballot, model: candidate4});
-var button8 = new ButtonView({el: $('#downvote4'), collection: ballot, model: candidate4});
-
-var voteCounter1 = new CountView({el: $('#vote-counter1'), collection: ballot, model: candidate1});
-var voteCounter2 = new CountView({el: $('#vote-counter2'), collection: ballot, model: candidate2});
-var voteCounter3 = new CountView({el: $('#vote-counter3'), collection: ballot, model: candidate3});
-var voteCounter4 = new CountView({el: $('#vote-counter4'), collection: ballot, model: candidate4});
+new CountView({el: $('#vote-counter-candidate1'), model: candidate1});
+new CountView({el: $('#vote-counter-candidate2'), model: candidate2});
+new CountView({el: $('#vote-counter-candidate3'), model: candidate3});
+new CountView({el: $('#vote-counter-candidate4'), model: candidate4});
 
 });

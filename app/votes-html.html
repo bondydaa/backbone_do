@@ -9,8 +9,8 @@
 </head>
 <body>
 
-  <ul>
-    <li id="opt1">
+  <ul id="ballot">
+    <!-- <li id="opt1">
       <span id="vote-counter1" class="vote-counter">0</span>
       <button id="upvote1" class="vote-plus"></button>
       One
@@ -33,7 +33,7 @@
       <button id="upvote4" class="vote-plus"></button>
       Four
       <button id="downvote4" class="vote-minus"></button>
-    </li>
+    </li> -->
   </ul>
 
   <script type="text/javascript" src="/app/js/vendor/jquery-1.11.0.min.js"></script>
@@ -43,7 +43,14 @@
 
 
   <script type="text/template" id="vote-counter-tmplt">
-  <span class="vote-counter"><%= votes %></span>
+  <%= votes %>
+  </script>
+
+  <script type="text/template" id="candidate-template">
+    <span id="vote-counter-<%= name %>" class="vote-counter"><%= votes %></span>
+    <button id="<%= name %>-upvote" class="vote-plus"></button>
+    <%= name %>
+    <button id="<%= name %>-downvote" class="vote-minus"></button>
   </script>
 
 </body>
