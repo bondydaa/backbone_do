@@ -3,70 +3,69 @@ $(document).ready(function(){
 var CandidateModel = Backbone.Model.extend({
   defaults: {
     votes: 0
+  },
+
+  inc: function(){
+    this.set('votes', this.get('votes')+1);
+  },
+
+  dec: function(){
+    this.set('votes', this.get('votes')-1);
   }
+
 });
 
 var BallotCollection = Backbone.Collection.extend({
   model: CandidateModel,
   comparator: 'votes',
 
-  addCandiate: function(model){
-
+  addCandiate: function(newLocation){
+    this.add({name: newLocation});
   }
 
 });
 
-var ButtonView = Backbone.View.extend({
-  events: {
-    'click': 'increment'
-  },
-
-  increment: function(e){
-    var numVotes = this.model.attributes.votes,
-        incdVote;
-    if(this.$el.hasClass('vote-plus')){
-      // this.model.attributes.votes++;
-      incdVote = ++numVotes;
-      this.model.set({votes: incdVote});
-    } else {
-      // this.model.attributes.votes--;
-      incdVote = --numVotes;
-      this.model.set({votes: incdVote});
-    }
-    this.collection.sort();
-    console.log(this.collection);
-  }
-
-});
 
 var CandidateView = Backbone.View.extend({
   template: _.template($('#candidate-template').html()),
 
+  events: {
+    'click .vote-plus' : 'increment',
+    'click .vote-minus' : 'decrement'
+  },
+
+  remove: function(){
+    self.countview.remove();
+    return Backbone.View.prototype.remove.call(this);
+  },
+
+  increment: function(){
+    this.model.inc();
+
+  },
+
+  decrement: function(){
+    this.model.dec();
+
+  },
+
   initialize: function(){
     this.render();
-
-    // var modelName = this.model.attributes.name;
-    // new ButtonView({el: $('#'+modelName+'-upvote'), collection: ballot, model: modelName});
-    // new ButtonView({el: $('#'+modelName+'-downvote'), collection: ballot, model: modelName});
-    // console.log('#'+modelName+'-upvote');
-
   },
 
   render: function(){
     var rendered = this.template(this.model.toJSON());
     this.$el.html(rendered);
-    // this.initBtns();
+    var model = this.model,
+        self = this;
+    setTimeout(function(){
+      self.countivew = new CountView({el: '#vote-counter-'+model.get('name'), model: model});
+      console.log( $('#vote-counter-one').length );
+    }, 0);
+
   },
 
-  initBtns: function(){
-    // var modelName = this.model.attributes.name;
-    // console.log('#'+modelName+'-upvote');
-    // new ButtonView({el: $('#'+modelName+'-upvote'), collection: ballot, model: modelName});
-    // new ButtonView({el: $('#'+modelName+'-downvote'), collection: ballot, model: modelName});
-  }
-
 });
-
 
 
 var CountView = Backbone.View.extend({
@@ -89,37 +88,27 @@ var CountView = Backbone.View.extend({
 
 });
 
+var FormView = Backbone.View.extend({
+  events: {
+    'submit': 'addNewLocation'
+  },
 
-
-var candidate1 = new CandidateModel({name: 'candidate1'});
-var candidate2 = new CandidateModel({name: 'candidate2'});
-var candidate3 = new CandidateModel({name: 'candidate3'});
-var candidate4 = new CandidateModel({name: 'candidate4'});
+  addNewLocation: function(){
+    var newLocation = this.$el.find('input').val();
+    this.collection.addCandiate(newLocation);
+    this.$el.find('input').val('');
+    return false;
+  }
+});
 
 var ballot = new BallotCollection();
+
+var newLocationView = new FormView({el: "form", collection: ballot})
 
 ballot.on('add', function(model){
   var view = new CandidateView({el: $('<li></li>'), model: model});
   $('#ballot').append(view.$el);
 });
 
-ballot.add(candidate1);
-ballot.add(candidate2);
-ballot.add(candidate3);
-ballot.add(candidate4);
-
-new ButtonView({el: $('#candidate1-upvote'), collection: ballot, model: candidate1});
-new ButtonView({el: $('#candidate1-downvote'), collection: ballot, model: candidate1});
-new ButtonView({el: $('#candidate2-upvote'), collection: ballot, model: candidate2});
-new ButtonView({el: $('#candidate2-downvote'), collection: ballot, model: candidate2});
-new ButtonView({el: $('#candidate3-upvote'), collection: ballot, model: candidate3});
-new ButtonView({el: $('#candidate3-downvote'), collection: ballot, model: candidate3});
-new ButtonView({el: $('#candidate4-upvote'), collection: ballot, model: candidate4});
-new ButtonView({el: $('#candidate4-downvote'), collection: ballot, model: candidate4});
-
-new CountView({el: $('#vote-counter-candidate1'), model: candidate1});
-new CountView({el: $('#vote-counter-candidate2'), model: candidate2});
-new CountView({el: $('#vote-counter-candidate3'), model: candidate3});
-new CountView({el: $('#vote-counter-candidate4'), model: candidate4});
 
 });
