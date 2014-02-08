@@ -7,10 +7,14 @@ var CandidateModel = Backbone.Model.extend({
 
   inc: function(){
     this.set('votes', this.get('votes')+1);
+    // console.log(this.collection);
+    this.collection.sort();
   },
 
   dec: function(){
     this.set('votes', this.get('votes')-1);
+    // console.log(this.collection);
+    this.collection.sort();
   }
 
 });
@@ -19,8 +23,22 @@ var BallotCollection = Backbone.Collection.extend({
   model: CandidateModel,
   comparator: 'votes',
 
+  initialize: function(){
+    this.on('sort', function(){
+      this.totalVotes();
+    }, this);
+  },
+
   addCandiate: function(newLocation){
     this.add({name: newLocation});
+  },
+
+  totalVotes: function(){
+    var totalVotes = 0;
+    $.each(this.models, function(index, model){
+      var modelVotes = model.get('votes');
+      totalVotes += modelVotes;
+    });
   }
 
 });
@@ -41,12 +59,10 @@ var CandidateView = Backbone.View.extend({
 
   increment: function(){
     this.model.inc();
-
   },
 
   decrement: function(){
     this.model.dec();
-
   },
 
   initialize: function(){
@@ -60,9 +76,7 @@ var CandidateView = Backbone.View.extend({
         self = this;
     setTimeout(function(){
       self.countivew = new CountView({el: '#vote-counter-'+model.get('name'), model: model});
-      console.log( $('#vote-counter-one').length );
     }, 0);
-
   },
 
 });
@@ -72,8 +86,6 @@ var CountView = Backbone.View.extend({
   template: _.template( $('#vote-counter-tmplt').html() ),
 
   initialize: function() {
-    // this.listenTo(this.model, "change", this.alert);
-
     this.render();
 
     this.model.on('change', function(){

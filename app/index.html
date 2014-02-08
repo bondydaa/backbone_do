@@ -9,12 +9,23 @@
 </head>
 <body>
 
-  <section class="main">
+  <section class="header">
     <header>
       <h1>Let's Do</h1>
       <p>The quickest, simplest way to force your friends to make a decision.</p>
     </header>
 
+    <div>
+      <ul>
+        <li>Create Event</li>
+        <li>Set Locations</li>
+        <li>Invite Friends</li>
+        <li>Vote!</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="main">
     <div>
       <form>
         <label for="event">Let's Do:</label>
@@ -36,6 +47,13 @@
 
   <script type="text/template" id="vote-counter-tmplt">
   <p><%= votes %></p>
+  </script>
+
+  <script type="text/template" id="candidate-template">
+    <span id="vote-counter-<%= name %>" class="vote-counter"><%= votes %></span>
+    <button id="<%= name %>-upvote" class="vote-plus"></button>
+    <%= name %>
+    <button id="<%= name %>-downvote" class="vote-minus"></button>
   </script>
 
 </body>
