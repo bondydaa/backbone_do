@@ -3,15 +3,32 @@
 @import "mixins";
 @import "reset";
 @import "layout";
+@import "tabs";
 
 body {
   padding: 20px;
 }
 
-li {
-  list-style: none;
-}
-
 button {
   margin: 5px;
+}
+
+.hide {
+  display: none;
+}
+
+.clearfix:before,
+.clearfix:after {
+  content: "";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+.clearfix {
+  *zoom: 1;
+}
+
+.main {
+  clear: both;
 }

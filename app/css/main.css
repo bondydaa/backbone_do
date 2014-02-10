@@ -59,17 +59,65 @@ table {
   border-spacing: 0;
 }
 
-/* line 4, ../src/main.scss */
-body {
-  padding: 20px;
+/* line 1, ../src/_tabs.scss */
+.explain {
+  border: 1px solid blue;
+  margin-bottom: 20px;
+}
+
+/* line 6, ../src/_tabs.scss */
+.explaination {
+  clear: both;
+}
+
+/* line 10, ../src/_tabs.scss */
+.tab {
+  float: left;
+  border: 1px solid blue;
+}
+/* line 13, ../src/_tabs.scss */
+.tab.active {
+  border-bottom: none;
+}
+
+/* line 18, ../src/_tabs.scss */
+.tab-inner {
+  padding: 10px 15px;
 }
 
 /* line 8, ../src/main.scss */
-li {
-  list-style: none;
+body {
+  padding: 20px;
 }
 
 /* line 12, ../src/main.scss */
 button {
   margin: 5px;
+}
+
+/* line 16, ../src/main.scss */
+.hide {
+  display: none;
+}
+
+/* line 21, ../src/main.scss */
+.clearfix:before,
+.clearfix:after {
+  content: "";
+  display: table;
+}
+
+/* line 25, ../src/main.scss */
+.clearfix:after {
+  clear: both;
+}
+
+/* line 28, ../src/main.scss */
+.clearfix {
+  *zoom: 1;
+}
+
+/* line 32, ../src/main.scss */
+.main {
+  clear: both;
 }

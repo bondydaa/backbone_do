@@ -1,0 +1,20 @@
+.explain {
+  border: 1px solid blue;
+  margin-bottom: 20px;
+}
+
+.explaination {
+  clear: both;
+}
+
+.tab {
+  float: left;
+  border: 1px solid blue;
+  &.active {
+    border-bottom: none;
+  }
+}
+
+.tab-inner {
+  padding: 10px 15px;
+}
