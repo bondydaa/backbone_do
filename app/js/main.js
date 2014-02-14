@@ -44,7 +44,8 @@ var ExplainationsView = Backbone.View.extend({
     this.render();
   },
 
-  render: function(){
+  render: function(view){
+    console.log(this, $(this));
     var rendered = this.template(this.explainations.create);
     this.$el.html(rendered);
     console.log(rendered);
@@ -65,12 +66,12 @@ var ExplainRouter = Backbone.Router.extend({
     $('.tabs').on('click', function(e){
       e.preventDefault();
       var hrefCall = $(e.target).attr('href');
-      console.log(hrefCall);
+
     });
   },
 
   createView: function(){
-    new ExplainationsView({})
+    new ExplainationsView({el: $('.explain')});
   }
 
 
@@ -196,6 +197,8 @@ var ballot = new BallotCollection();
 var newLocationView = new FormView({el: "form", collection: ballot})
 
 var router = new ExplainRouter();
+
+Backbone.history.start();
 
 // var explainationsView = new ExplainationsView({el: $('.explain')});
 
