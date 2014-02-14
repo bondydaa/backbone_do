@@ -54,12 +54,27 @@ var ExplainationsView = Backbone.View.extend({
 
 var ExplainRouter = Backbone.Router.extend({
   // var explainationsView = new ExplainationsView({el: $('.explain')});
+  routes: {
+    'create': 'createView',
+    'locations': 'locationsView',
+    'invite': 'inviteView',
+    'vote': 'voteView'
+  },
+
   initialize: function(){
     $('.tabs').on('click', function(e){
       e.preventDefault();
-      console.log(e.target);
+      var hrefCall = $(e.target).attr('href');
+      console.log(hrefCall);
     });
+  },
+
+  createView: function(){
+    new ExplainationsView({})
   }
+
+
+
 });
 
 var CandidateModel = Backbone.Model.extend({
@@ -181,6 +196,8 @@ var ballot = new BallotCollection();
 var newLocationView = new FormView({el: "form", collection: ballot})
 
 var router = new ExplainRouter();
+
+// var explainationsView = new ExplainationsView({el: $('.explain')});
 
 ballot.on('add', function(model){
   var view = new CandidateView({el: $('<li></li>'), model: model});
