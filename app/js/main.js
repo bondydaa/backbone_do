@@ -1,46 +1,5 @@
+(function ($, global) {
 $(document).ready(function(){
-
-var ExplainationModel = Backbone.Model.extend({
-  defaults: {
-    id: "",
-    paragraph: "",
-    listType: "",
-    listItems: []
-  }
-});
-
-var ExplainationCollection = Backbone.Collection.extend({
-  model: ExplainationModel
-
-});
-
-var ExplainationsView = Backbone.View.extend({
-  template: _.template( $('#explain-template').html() ),
-
-  initialize: function(){
-    this.render();
-  },
-
-  render: function(){
-    var rendered = this.template(this.model.attributes);
-    this.$el.html(rendered);
-  }
-
-});
-
-var ExplainRouter = Backbone.Router.extend({
-  routes: {
-    ':id': 'createView'
-  },
-
-  createView: function(id){
-    var model = explainations.get({id: id});
-    new ExplainationsView({el: $('.explain'), model: model});
-  }
-
-
-
-});
 
 var CandidateModel = Backbone.Model.extend({
   defaults: {
@@ -59,6 +18,15 @@ var CandidateModel = Backbone.Model.extend({
     this.collection.sort();
   }
 
+});
+
+var ExplainationModel = Backbone.Model.extend({
+  defaults: {
+    id: "",
+    paragraph: "",
+    listType: "",
+    listItems: []
+  }
 });
 
 var BallotCollection = Backbone.Collection.extend({
@@ -85,6 +53,10 @@ var BallotCollection = Backbone.Collection.extend({
 
 });
 
+var ExplainationCollection = Backbone.Collection.extend({
+  model: ExplainationModel
+
+});
 
 var CandidateView = Backbone.View.extend({
   template: _.template($('#candidate-template').html()),
@@ -123,7 +95,6 @@ var CandidateView = Backbone.View.extend({
 
 });
 
-
 var CountView = Backbone.View.extend({
   template: _.template( $('#vote-counter-tmplt').html() ),
 
@@ -143,6 +114,20 @@ var CountView = Backbone.View.extend({
 
 });
 
+var ExplainationsView = Backbone.View.extend({
+  template: _.template( $('#explain-template').html() ),
+
+  initialize: function(){
+    this.render();
+  },
+
+  render: function(){
+    var rendered = this.template(this.model.attributes);
+    this.$el.html(rendered);
+  }
+
+});
+
 var FormView = Backbone.View.extend({
   events: {
     'submit': 'addNewLocation'
@@ -154,6 +139,18 @@ var FormView = Backbone.View.extend({
     this.$el.find('input').val('');
     return false;
   }
+});
+
+var ExplainRouter = Backbone.Router.extend({
+  routes: {
+    ':id': 'createView'
+  },
+
+  createView: function(id){
+    var model = explainations.get({id: id});
+    new ExplainationsView({el: $('.explain'), model: model});
+  }
+
 });
 
 var ballot = new BallotCollection();
@@ -216,6 +213,5 @@ $tabs.on('click', function(e){
   router.navigate(hrefCall, {trigger: true});
 });
 
-
 });
-
+})(jQuery, this);

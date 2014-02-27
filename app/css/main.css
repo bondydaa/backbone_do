@@ -21,103 +21,84 @@ time, mark, audio, video {
   border: 0;
   font-size: 100%;
   font: inherit;
-  vertical-align: baseline;
-}
+  vertical-align: baseline; }
 
 /* HTML5 display-role reset for older browsers */
 /* line 28, ../src/_reset.scss */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
-  display: block;
-}
+  display: block; }
 
 /* line 31, ../src/_reset.scss */
 body {
-  line-height: 1;
-}
+  line-height: 1; }
 
 /* line 34, ../src/_reset.scss */
 ol, ul {
-  list-style: none;
-}
+  list-style: none; }
 
 /* line 37, ../src/_reset.scss */
 blockquote, q {
-  quotes: none;
-}
+  quotes: none; }
 
 /* line 41, ../src/_reset.scss */
 blockquote:before, blockquote:after,
 q:before, q:after {
   content: '';
-  content: none;
-}
+  content: none; }
 
 /* line 45, ../src/_reset.scss */
 table {
   border-collapse: collapse;
-  border-spacing: 0;
-}
+  border-spacing: 0; }
 
 /* line 1, ../src/_tabs.scss */
 .explain {
   border: 1px solid blue;
-  margin-bottom: 20px;
-}
+  margin-bottom: 20px; }
 
 /* line 6, ../src/_tabs.scss */
 .explanation {
-  clear: both;
-}
+  clear: both; }
 
 /* line 10, ../src/_tabs.scss */
 .tab {
   float: left;
-  border: 1px solid blue;
-}
-/* line 13, ../src/_tabs.scss */
-.tab.active {
-  border-bottom: none;
-}
+  border: 1px solid blue; }
+  /* line 13, ../src/_tabs.scss */
+  .tab.active {
+    border-bottom: none; }
 
 /* line 18, ../src/_tabs.scss */
 .tab-inner {
-  padding: 10px 15px;
-}
+  padding: 10px 15px; }
 
 /* line 8, ../src/main.scss */
 body {
-  padding: 20px;
-}
+  padding: 20px; }
 
 /* line 12, ../src/main.scss */
 button {
-  margin: 5px;
-}
+  margin: 5px; }
 
 /* line 16, ../src/main.scss */
 .hide {
-  display: none;
-}
+  display: none; }
 
 /* line 21, ../src/main.scss */
 .clearfix:before,
 .clearfix:after {
   content: "";
-  display: table;
-}
+  display: table; }
 
 /* line 25, ../src/main.scss */
 .clearfix:after {
-  clear: both;
-}
+  clear: both; }
 
 /* line 28, ../src/main.scss */
 .clearfix {
-  *zoom: 1;
-}
+  *zoom: 1; }
 
 /* line 32, ../src/main.scss */
 .main {
-  clear: both;
-}
+  clear: both; }
