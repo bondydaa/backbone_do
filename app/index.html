@@ -17,7 +17,8 @@
 
     <div>
       <ul class="tabs">
-        <li class="tab active"><a href="#create" class="tab-inner">Create Event</a></li>
+        <li class="tab
+        "><a href="#create" class="tab-inner">Create Event</a></li>
         <li class="tab"><a href="#locations" class="tab-inner">Set Locations</a></li>
         <li class="tab"><a href="#invite" class="tab-inner">Invite Friends</a></li>
         <li class="tab"><a href="#vote" class="tab-inner">Vote!</a></li>
@@ -61,11 +62,13 @@
   <script type="text/template" id='explain-template'>
     <div class="explanation" id="<%= id %>">
       <p><%= paragraph %></p>
+      <% if(listType) { %>
       <<%= listType %>>
         <% _.each(listItems, function(el, index, list){ %>
           <li><%= el %></li>
         <% }) %>
       </<%= listType %>>
+      <% } %>
     </div>
   </script>
 
