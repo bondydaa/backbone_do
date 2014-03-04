@@ -17,8 +17,7 @@
 
     <div>
       <ul class="tabs">
-        <li class="tab
-        "><a href="#create" class="tab-inner">Create Event</a></li>
+        <li class="tab"><a href="#create" class="tab-inner">Create Event</a></li>
         <li class="tab"><a href="#locations" class="tab-inner">Set Locations</a></li>
         <li class="tab"><a href="#invite" class="tab-inner">Invite Friends</a></li>
         <li class="tab"><a href="#vote" class="tab-inner">Vote!</a></li>
@@ -29,17 +28,7 @@
   </section>
 
   <section class="main">
-    <div>
-      <form>
-        <label for="event">Let's Do:</label>
-        <input type="text" id="event">
-        <label>When?</label>
-        <input type="date">
-        <label>How Many People</label>
-        <input type="number">
-        <input type="submit" value="Let's Do!">
-      </form>
-    </div>
+
   </section>
 
   <script type="text/javascript" src="/app/js/vendor/jquery-1.11.0.min.js"></script>
@@ -70,6 +59,12 @@
       </<%= listType %>>
       <% } %>
     </div>
+  </script>
+
+  <script type="text/template" id="app-template">
+    < <%= wrapper %> >
+      <% content %>
+    </ <%= wrapper %> >
   </script>
 
 </body>
