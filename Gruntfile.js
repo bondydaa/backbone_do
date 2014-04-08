@@ -58,7 +58,8 @@ module.exports = function(grunt) {
 
   // Default task.
   grunt.registerTask('default', [
-    'compass:dist'
+    'compass',
+    'concat'
   ]);
 
 };
