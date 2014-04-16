@@ -1,12 +1,22 @@
 var AppView = Backbone.View.extend({
-  template: _.template($('#app-template').html()),
+  el: '#main',
+
+  newEventTemplate: $('#new-event-template').html(),
 
   initialize: function(){
     this.render();
   },
 
   render: function(){
-    var rendered = this.template(this.model.attributes);
-    this.$el.html(rendered);
+    this.$el.html(this.newEventTemplate);
+
+    $('#new-event').on('submit', function(){
+      this.createBallot();
+    });
+  },
+
+  createBallot: function(){
+    router.navigate("")
   }
+
 });

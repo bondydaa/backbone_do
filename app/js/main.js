@@ -1,12 +1,6 @@
 (function ($, global) {
 $(document).ready(function(){
 
-var AppModel = Backbone.Model.extend({
-  defaults: {
-    wrapper: "div"
-  }
-});
-
 var CandidateModel = Backbone.Model.extend({
   defaults: {
     votes: 0
@@ -33,11 +27,6 @@ var ExplainationModel = Backbone.Model.extend({
     listType: "",
     listItems: []
   }
-});
-
-var AppCollection = Backbone.Collection.extend({
-  model: AppModel
-
 });
 
 var BallotCollection = Backbone.Collection.extend({
@@ -70,16 +59,26 @@ var ExplainationCollection = Backbone.Collection.extend({
 });
 
 var AppView = Backbone.View.extend({
-  template: _.template($('#app-template').html()),
+  el: '#main',
+
+  newEventTemplate: $('#new-event-template').html(),
 
   initialize: function(){
     this.render();
   },
 
   render: function(){
-    var rendered = this.template(this.model.attributes);
-    this.$el.html(rendered);
+    this.$el.html(this.newEventTemplate);
+
+    $('#new-event').on('submit', function(){
+      this.createBallot();
+    });
+  },
+
+  createBallot: function(){
+    router.navigate("")
   }
+
 });
 
 var CandidateView = Backbone.View.extend({
@@ -167,12 +166,17 @@ var FormView = Backbone.View.extend({
 
 var ExplainRouter = Backbone.Router.extend({
   routes: {
-    ':id': 'createView'
+    ':id': 'createView',
+    'createBallot/:hash': 'createNewBallot'
   },
 
   createView: function(id){
     var model = explainations.get({id: id});
     new ExplainationsView({el: $('.explain'), model: model});
+  },
+
+  createNewBallot: function(hash) {
+
   }
 
 });
@@ -218,27 +222,7 @@ explainations.add({
   "paragraph": "Here is where the magic happens. You and your fiends can vote on locations to quickly make a decision. The location that gets a majority of the votes will be the winner. If no location receives a majority vote 30 minutes prior to the start of your event then the location with the most votes will be the winner. You and your friends will be notified once either condition is met."
 });
 
-var appCollection = new AppCollection();
-
-appCollection.on('add', function(model){
-  console.log(model);
-  var appView = new AppView({el: $('<div></div>'), model: model});
-});
-
-appCollection.add({
-  content:
-    "<form>"+
-        "<label for='event'>Let"+'+'+"s Do:</label>"+
-        "<input type='text' id='event'>"+
-        "<label>When?</label>"+
-        "<input type='date'>"+
-        "<label>How Many People</label>"+
-        "<input type='number'>"+
-        "<input type='submit' value='Let"+'+'+"s Do!>"+
-      "</form>"
-});
-
-console.log(appCollection);
+var app = new AppView();
 
 var router = new ExplainRouter();
 

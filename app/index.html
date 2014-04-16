@@ -27,14 +27,14 @@
     </div>
   </section>
 
-  <section class="main">
+  <section id="main">
 
   </section>
 
-  <script type="text/javascript" src="/app/js/vendor/jquery-1.11.0.min.js"></script>
-  <script type="text/javascript" src="/app/js/vendor/underscore-min.js"></script>
-  <script type="text/javascript" src="/app/js/vendor/backbone-min.js"></script>
-  <script type="text/javascript" src="/app/js/main.js"></script>
+  <script src="/app/js/vendor/jquery-1.11.0.min.js"></script>
+  <script src="/app/js/vendor/underscore-1.6.0.js"></script>
+  <script src="/app/js/vendor/backbone-1.1.2.js"></script>
+  <script src="/app/js/main.js"></script>
 
 
   <script type="text/template" id="vote-counter-tmplt">
@@ -61,10 +61,16 @@
     </div>
   </script>
 
-  <script type="text/template" id="app-template">
-    < <%= wrapper %> >
-      <% content %>
-    </ <%= wrapper %> >
+  <script type="text/template" id="new-event-template">
+    <form id="new-event">
+      <label for="event">Let's Do:</label>
+      <input type="text" id="event">
+      <label for="date">When?</label>
+      <input type="date" id="date">
+      <label for="people">How Many People</label>
+      <input type="number">
+      <input type="submit" value="Let's Do!">
+    </form>
   </script>
 
 </body>
