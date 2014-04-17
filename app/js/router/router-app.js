@@ -11,6 +11,7 @@ var ExplainRouter = Backbone.Router.extend({
 
   createNewBallot: function(hash) {
 
+
   }
 
 });

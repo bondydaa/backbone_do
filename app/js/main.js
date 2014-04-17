@@ -37,6 +37,11 @@ var BallotCollection = Backbone.Collection.extend({
     this.on('sort', function(){
       this.totalVotes();
     }, this);
+
+    this.on('add', function(model){
+      var view = new CandidateView({el: $('<div></div>'), model: model});
+      $('#ballot').append(view.$el);
+    })
   },
 
   addCandiate: function(newLocation){
@@ -62,21 +67,34 @@ var AppView = Backbone.View.extend({
   el: '#main',
 
   newEventTemplate: $('#new-event-template').html(),
+  addLocationsTemplate: $('#add-locations-template').html(),
 
   initialize: function(){
-    this.render();
-  },
-
-  render: function(){
+    var self = this;
     this.$el.html(this.newEventTemplate);
 
-    $('#new-event').on('submit', function(){
-      this.createBallot();
+    $('#new-event').on('submit', function(e){
+      e.preventDefault();
+      self.createBallot();
     });
   },
 
+  render: function(){
+
+  },
+
   createBallot: function(){
-    router.navigate("")
+    var hash = Math.random().toString(36).substr(2, 5); //cuts '0.' from has, sets it to 5 characters
+    router.navigate("createBallot/"+hash, {trigger: true});
+
+    this.$el.html(this.addLocationsTemplate);
+
+    var ballot = new BallotCollection();
+    console.log(ballot);
+
+    var newLocationView = new FormView({el: $('#add-location-form'), collection: ballot});
+    console.log(newLocationView);
+
   }
 
 });
@@ -177,13 +195,10 @@ var ExplainRouter = Backbone.Router.extend({
 
   createNewBallot: function(hash) {
 
+
   }
 
 });
-
-var ballot = new BallotCollection();
-
-var newLocationView = new FormView({el: "form", collection: ballot});
 
 var explainations = new ExplainationCollection();
 
@@ -226,14 +241,10 @@ var app = new AppView();
 
 var router = new ExplainRouter();
 
-Backbone.history.start();
-
-ballot.on('add', function(model){
-  var view = new CandidateView({el: $('<div></div>'), model: model});
-  $('#ballot').append(view.$el);
-});
+Backbone.history.start({pushState: true});
 
 var $tabs = $('.tabs');
+
 $tabs.on('click', function(e){
   e.preventDefault();
   var hrefCall = $(e.target).attr('href');

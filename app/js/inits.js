@@ -1,7 +1,3 @@
-var ballot = new BallotCollection();
-
-var newLocationView = new FormView({el: "form", collection: ballot});
-
 var explainations = new ExplainationCollection();
 
 explainations.add({
@@ -43,14 +39,10 @@ var app = new AppView();
 
 var router = new ExplainRouter();
 
-Backbone.history.start();
-
-ballot.on('add', function(model){
-  var view = new CandidateView({el: $('<div></div>'), model: model});
-  $('#ballot').append(view.$el);
-});
+Backbone.history.start({pushState: true});
 
 var $tabs = $('.tabs');
+
 $tabs.on('click', function(e){
   e.preventDefault();
   var hrefCall = $(e.target).attr('href');

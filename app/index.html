@@ -62,7 +62,7 @@
   </script>
 
   <script type="text/template" id="new-event-template">
-    <form id="new-event">
+    <form id="new-event" action="#">
       <label for="event">Let's Do:</label>
       <input type="text" id="event">
       <label for="date">When?</label>
@@ -71,6 +71,15 @@
       <input type="number">
       <input type="submit" value="Let's Do!">
     </form>
+  </script>
+
+  <script type="text/template" id="add-locations-template">
+    <form id="add-location-form">
+      <label for="new-location">Enter a New Location</label>
+      <input type="text" id="new-location">
+    </form>
+    <ul id="ballot">
+    </ul>
   </script>
 
 </body>
