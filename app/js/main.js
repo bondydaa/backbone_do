@@ -3,7 +3,8 @@ $(document).ready(function(){
 
 var CandidateModel = Backbone.Model.extend({
   defaults: {
-    votes: 0
+    votes: 0,
+    voting: false
   },
 
   inc: function(){
@@ -63,6 +64,21 @@ var ExplainationCollection = Backbone.Collection.extend({
 
 });
 
+var AddLocToBallot = Backbone.View.extend({
+  template: $('#add-locations-template').html(),
+
+  initialize: function(){
+    var ballot = new BallotCollection();
+    this.render(ballot)
+  },
+
+  render: function(ballot){
+    this.$el.html(this.template);
+    var newLocationView = new FormView({el: $('#add-location-form'), collection: ballot});
+  }
+
+});
+
 var AppView = Backbone.View.extend({
   el: '#main',
 
@@ -87,13 +103,7 @@ var AppView = Backbone.View.extend({
     var hash = Math.random().toString(36).substr(2, 5); //cuts '0.' from has, sets it to 5 characters
     router.navigate("createBallot/"+hash, {trigger: true});
 
-    this.$el.html(this.addLocationsTemplate);
-
-    var ballot = new BallotCollection();
-    console.log(ballot);
-
-    var newLocationView = new FormView({el: $('#add-location-form'), collection: ballot});
-    console.log(newLocationView);
+    var addLocView = new AddLocToBallot({el: this.el});
 
   }
 
@@ -104,7 +114,8 @@ var CandidateView = Backbone.View.extend({
 
   events: {
     'click .vote-plus' : 'increment',
-    'click .vote-minus' : 'decrement'
+    'click .vote-minus' : 'decrement',
+    'dblclick': 'editName'
   },
 
   remove: function(){
@@ -118,6 +129,10 @@ var CandidateView = Backbone.View.extend({
 
   decrement: function(){
     this.model.dec();
+  },
+
+  editName: function(){
+
   },
 
   initialize: function(){
@@ -241,7 +256,7 @@ var app = new AppView();
 
 var router = new ExplainRouter();
 
-Backbone.history.start({pushState: true});
+Backbone.history.start();
 
 var $tabs = $('.tabs');
 

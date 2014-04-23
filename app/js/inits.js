@@ -39,7 +39,7 @@ var app = new AppView();
 
 var router = new ExplainRouter();
 
-Backbone.history.start({pushState: true});
+Backbone.history.start();
 
 var $tabs = $('.tabs');
 

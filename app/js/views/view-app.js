@@ -22,13 +22,7 @@ var AppView = Backbone.View.extend({
     var hash = Math.random().toString(36).substr(2, 5); //cuts '0.' from has, sets it to 5 characters
     router.navigate("createBallot/"+hash, {trigger: true});
 
-    this.$el.html(this.addLocationsTemplate);
-
-    var ballot = new BallotCollection();
-    console.log(ballot);
-
-    var newLocationView = new FormView({el: $('#add-location-form'), collection: ballot});
-    console.log(newLocationView);
+    var addLocView = new AddLocToBallot({el: this.el});
 
   }
 

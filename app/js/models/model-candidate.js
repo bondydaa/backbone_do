@@ -1,6 +1,7 @@
 var CandidateModel = Backbone.Model.extend({
   defaults: {
-    votes: 0
+    votes: 0,
+    voting: false
   },
 
   inc: function(){

@@ -38,14 +38,14 @@
 
 
   <script type="text/template" id="vote-counter-tmplt">
-  <p><%= votes %></p>
+  <%= votes %>
   </script>
 
   <script type="text/template" id="candidate-template">
-    <span id="vote-counter-<%= name %>" class="vote-counter"><%= votes %></span>
-    <button id="<%= name %>-upvote" class="vote-plus"></button>
+    <span id="vote-counter-<%= name %>" class="vote-counter<% if(!voting){ %> hide<%} %>"><%= votes %></span>
+    <button id="<%= name %>-upvote" class="vote-plus<% if(!voting){ %> hide<%} %>"></button>
     <%= name %>
-    <button id="<%= name %>-downvote" class="vote-minus"></button>
+    <button id="<%= name %>-downvote" class="vote-minus<% if(!voting){ %> hide<%} %>"></button>
   </script>
 
   <script type="text/template" id='explain-template'>

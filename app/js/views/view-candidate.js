@@ -3,7 +3,8 @@ var CandidateView = Backbone.View.extend({
 
   events: {
     'click .vote-plus' : 'increment',
-    'click .vote-minus' : 'decrement'
+    'click .vote-minus' : 'decrement',
+    'dblclick': 'editName'
   },
 
   remove: function(){
@@ -17,6 +18,10 @@ var CandidateView = Backbone.View.extend({
 
   decrement: function(){
     this.model.dec();
+  },
+
+  editName: function(){
+
   },
 
   initialize: function(){
