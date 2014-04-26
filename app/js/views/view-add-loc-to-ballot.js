@@ -1,14 +1,14 @@
-var AddLocToBallot = Backbone.View.extend({
-  template: $('#add-locations-template').html(),
+var AddCandidate = Backbone.View.extend({
+  template: $('#add-candidate-template').html(),
 
   initialize: function(){
     var ballot = new BallotCollection();
-    this.render(ballot)
+    this.render(ballot);
   },
 
   render: function(ballot){
     this.$el.html(this.template);
-    var newLocationView = new FormView({el: $('#add-location-form'), collection: ballot});
+    var newCandidateView = new FormView({el: $('#add-candidate-form'), collection: ballot});
   }
 
 });

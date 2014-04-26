@@ -2,7 +2,7 @@ var AppView = Backbone.View.extend({
   el: '#main',
 
   newEventTemplate: $('#new-event-template').html(),
-  addLocationsTemplate: $('#add-locations-template').html(),
+  addLocationsTemplate: $('#add-candidate-template').html(),
 
   initialize: function(){
     var self = this;
@@ -22,7 +22,7 @@ var AppView = Backbone.View.extend({
     var hash = Math.random().toString(36).substr(2, 5); //cuts '0.' from has, sets it to 5 characters
     router.navigate("createBallot/"+hash, {trigger: true});
 
-    var addLocView = new AddLocToBallot({el: this.el});
+    var addCandidate = new AddCandidate({el: this.el});
 
   }
 

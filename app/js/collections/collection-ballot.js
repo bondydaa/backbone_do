@@ -10,11 +10,11 @@ var BallotCollection = Backbone.Collection.extend({
     this.on('add', function(model){
       var view = new CandidateView({el: $('<div></div>'), model: model});
       $('#ballot').append(view.$el);
-    })
+    });
   },
 
-  addCandiate: function(newLocation){
-    this.add({name: newLocation});
+  addCandiate: function(newCandidate){
+    this.add({name: newCandidate});
   },
 
   totalVotes: function(){

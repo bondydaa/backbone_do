@@ -42,11 +42,11 @@ var BallotCollection = Backbone.Collection.extend({
     this.on('add', function(model){
       var view = new CandidateView({el: $('<div></div>'), model: model});
       $('#ballot').append(view.$el);
-    })
+    });
   },
 
-  addCandiate: function(newLocation){
-    this.add({name: newLocation});
+  addCandiate: function(newCandidate){
+    this.add({name: newCandidate});
   },
 
   totalVotes: function(){
@@ -64,17 +64,17 @@ var ExplainationCollection = Backbone.Collection.extend({
 
 });
 
-var AddLocToBallot = Backbone.View.extend({
-  template: $('#add-locations-template').html(),
+var AddCandidate = Backbone.View.extend({
+  template: $('#add-candidate-template').html(),
 
   initialize: function(){
     var ballot = new BallotCollection();
-    this.render(ballot)
+    this.render(ballot);
   },
 
   render: function(ballot){
     this.$el.html(this.template);
-    var newLocationView = new FormView({el: $('#add-location-form'), collection: ballot});
+    var newCandidateView = new FormView({el: $('#add-candidate-form'), collection: ballot});
   }
 
 });
@@ -83,7 +83,7 @@ var AppView = Backbone.View.extend({
   el: '#main',
 
   newEventTemplate: $('#new-event-template').html(),
-  addLocationsTemplate: $('#add-locations-template').html(),
+  addLocationsTemplate: $('#add-candidate-template').html(),
 
   initialize: function(){
     var self = this;
@@ -103,7 +103,7 @@ var AppView = Backbone.View.extend({
     var hash = Math.random().toString(36).substr(2, 5); //cuts '0.' from has, sets it to 5 characters
     router.navigate("createBallot/"+hash, {trigger: true});
 
-    var addLocView = new AddLocToBallot({el: this.el});
+    var addCandidate = new AddCandidate({el: this.el});
 
   }
 
@@ -186,12 +186,12 @@ var ExplainationsView = Backbone.View.extend({
 
 var FormView = Backbone.View.extend({
   events: {
-    'submit': 'addNewLocation'
+    'submit': 'addNewCandidate'
   },
 
-  addNewLocation: function(){
-    var newLocation = this.$el.find('input').val();
-    this.collection.addCandiate(newLocation);
+  addNewCandidate: function(){
+    var newCandidate = this.$el.find('input').val();
+    this.collection.addCandiate(newCandidate);
     this.$el.find('input').val('');
     return false;
   }

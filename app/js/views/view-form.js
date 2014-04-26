@@ -1,11 +1,11 @@
 var FormView = Backbone.View.extend({
   events: {
-    'submit': 'addNewLocation'
+    'submit': 'addNewCandidate'
   },
 
-  addNewLocation: function(){
-    var newLocation = this.$el.find('input').val();
-    this.collection.addCandiate(newLocation);
+  addNewCandidate: function(){
+    var newCandidate = this.$el.find('input').val();
+    this.collection.addCandiate(newCandidate);
     this.$el.find('input').val('');
     return false;
   }

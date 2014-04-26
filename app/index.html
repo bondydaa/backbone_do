@@ -42,10 +42,15 @@
   </script>
 
   <script type="text/template" id="candidate-template">
-    <span id="vote-counter-<%= name %>" class="vote-counter<% if(!voting){ %> hide<%} %>"><%= votes %></span>
-    <button id="<%= name %>-upvote" class="vote-plus<% if(!voting){ %> hide<%} %>"></button>
+    <span id="vote-counter-<%= name %>" class="vote-counter"><%= votes %></span>
+    <button id="<%= name %>-upvote" class="vote-plus"></button>
     <%= name %>
-    <button id="<%= name %>-downvote" class="vote-minus<% if(!voting){ %> hide<%} %>"></button>
+    <button id="<%= name %>-downvote" class="vote-minus"></button>
+  </script>
+
+  <script type="text/template" id="create-ballot-candidate-template">
+    <p><%= name %></p>
+    <input type="text" value="<%= name %>" class="edit-canidate">
   </script>
 
   <script type="text/template" id='explain-template'>
@@ -73,10 +78,10 @@
     </form>
   </script>
 
-  <script type="text/template" id="add-locations-template">
-    <form id="add-location-form">
-      <label for="new-location">Enter a New Location</label>
-      <input type="text" id="new-location">
+  <script type="text/template" id="add-candidate-template">
+    <form id="add-candidate-form">
+      <label for="new-candidate">Enter a New Candidate</label>
+      <input type="text" id="new-candidate">
     </form>
     <ul id="ballot">
     </ul>
