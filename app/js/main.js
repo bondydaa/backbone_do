@@ -50,7 +50,8 @@ var BallotCollection = Backbone.Collection.extend({
   },
 
   totalVotes: function(){
-    var totalVotes = 0;
+    var totalVotes;
+
     $.each(this.models, function(index, model){
       var modelVotes = model.get('votes');
       totalVotes += modelVotes;
@@ -65,7 +66,7 @@ var ExplainationCollection = Backbone.Collection.extend({
 });
 
 var AddCandidate = Backbone.View.extend({
-  template: $('#add-candidate-template').html(),
+  template: $('#create-ballot-candidate-template').html(),
 
   initialize: function(){
     var ballot = new BallotCollection();
@@ -100,7 +101,7 @@ var AppView = Backbone.View.extend({
   },
 
   createBallot: function(){
-    var hash = Math.random().toString(36).substr(2, 5); //cuts '0.' from has, sets it to 5 characters
+    var hash = Math.random().toString(36).substr(2, 5); //cuts '0.' from hash, sets it to 5 characters
     router.navigate("createBallot/"+hash, {trigger: true});
 
     var addCandidate = new AddCandidate({el: this.el});

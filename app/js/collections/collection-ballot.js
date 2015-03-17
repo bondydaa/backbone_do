@@ -18,7 +18,8 @@ var BallotCollection = Backbone.Collection.extend({
   },
 
   totalVotes: function(){
-    var totalVotes = 0;
+    var totalVotes;
+
     $.each(this.models, function(index, model){
       var modelVotes = model.get('votes');
       totalVotes += modelVotes;

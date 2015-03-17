@@ -1,5 +1,5 @@
 var AddCandidate = Backbone.View.extend({
-  template: $('#add-candidate-template').html(),
+  template: $('#create-ballot-candidate-template').html(),
 
   initialize: function(){
     var ballot = new BallotCollection();
